@@ -34,14 +34,13 @@ public class MainController {
     DirectoryWatcher directoryWatcher;
 
     @PostMapping("/")
-    public String test(@RequestBody String file) throws IOException, InterruptedException {
+    public void parse(@RequestBody String file) throws IOException, InterruptedException {
         xlsParser.readFromExcel(new File(".").getCanonicalPath() + "\\src\\main\\resources\\static\\excelFiles\\" + file);
         for (int i = 0; i < xlsParser.getPublishers().size(); i++) {
             Publisher savedPublisher = publisherService.addPublisher(xlsParser.getPublishers().get(i));
             Author savedAuthor = authorService.addAuthor(xlsParser.getAuthors().get(i));
             bookService.addBook(bookService.createBook(xlsParser.getBooks().get(i), savedAuthor.getAuthorName(), savedPublisher.getPublisherName()));
         }
-        return "Nice";
     }
 
     @GetMapping("/authors")
