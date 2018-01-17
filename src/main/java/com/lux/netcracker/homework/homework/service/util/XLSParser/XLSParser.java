@@ -33,9 +33,9 @@ public class XLSParser {
     private int authorCell;
     private int bookCell;
 
-    private ArrayList<Publisher> publishers = new ArrayList<>();
-    private ArrayList<Author> authors = new ArrayList<>();
-    private ArrayList<String> books = new ArrayList<>();
+    private ArrayList<Publisher> tempPublishers = new ArrayList<>();
+    private ArrayList<Author> tempAuthors = new ArrayList<>();
+    private ArrayList<String> tempBooks = new ArrayList<>();
 
     public void readFromExcel(String file) throws IOException {
         if (file.length() > 4) {
@@ -97,16 +97,16 @@ public class XLSParser {
         myExcelBook.close();
     }
 
-    public ArrayList<Publisher> getPublishers() {
-        return publishers;
+    public ArrayList<Publisher> getTempPublishers() {
+        return tempPublishers;
     }
 
-    public ArrayList<Author> getAuthors() {
-        return authors;
+    public ArrayList<Author> getTempAuthors() {
+        return tempAuthors;
     }
 
-    public ArrayList<String> getBooks() {
-        return books;
+    public ArrayList<String> getTempBooks() {
+        return tempBooks;
     }
 
     private void fillArrays(Row row) {
@@ -114,9 +114,9 @@ public class XLSParser {
             String bookName = row.getCell(bookCell).getStringCellValue().toLowerCase();
             String bookAuthor = row.getCell(authorCell).getStringCellValue().toLowerCase();
             String bookPublisher = row.getCell(publisherCell).getStringCellValue().toLowerCase();
-            publishers.add(publisherService.createPublisher(bookPublisher));
-            authors.add(authorService.createAuthor(bookAuthor));
-            books.add(bookName);
+            tempPublishers.add(publisherService.createPublisher(bookPublisher));
+            tempAuthors.add(authorService.createAuthor(bookAuthor));
+            tempBooks.add(bookName);
         }
     }
 

@@ -12,7 +12,8 @@ This is the tutorial for how to use my <b>BookShelf</b>.<br>
 To start the work with this piece of art you have to find a folder with a name <b>"excelFiles"</b>,<br>
 you can find it <b>in a static resources folder of this app</b>.<br>
 
-Just add your <b>.xls</b> or <b>.xlsx</b> file and system will parse it and add information to database.<br>
+Just place your <b>.xls</b> or <b>.xlsx</b>file without any russian letters or spaces in the name<br>
+and system will parse it and add information to database.<br>
 <h3>Make note!</h3> Every book on this bookshelf must be unique!<br>
 
 There are certain functions this BookShelf does:<br>

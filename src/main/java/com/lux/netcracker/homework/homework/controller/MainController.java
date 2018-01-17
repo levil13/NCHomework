@@ -36,10 +36,10 @@ public class MainController {
     @PostMapping("/")
     public void parse(@RequestBody String file) throws IOException, InterruptedException {
         xlsParser.readFromExcel(new File(".").getCanonicalPath() + "\\src\\main\\resources\\static\\excelFiles\\" + file);
-        for (int i = 0; i < xlsParser.getPublishers().size(); i++) {
-            Publisher savedPublisher = publisherService.addPublisher(xlsParser.getPublishers().get(i));
-            Author savedAuthor = authorService.addAuthor(xlsParser.getAuthors().get(i));
-            bookService.addBook(bookService.createBook(xlsParser.getBooks().get(i), savedAuthor.getAuthorName(), savedPublisher.getPublisherName()));
+        for (int i = 0; i < xlsParser.getTempPublishers().size(); i++) {
+            Publisher savedPublisher = publisherService.addPublisher(xlsParser.getTempPublishers().get(i));
+            Author savedAuthor = authorService.addAuthor(xlsParser.getTempAuthors().get(i));
+            bookService.addBook(bookService.createBook(xlsParser.getTempBooks().get(i), savedAuthor.getAuthorName(), savedPublisher.getPublisherName()));
         }
     }
 
